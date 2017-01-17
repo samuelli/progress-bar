@@ -2,6 +2,7 @@
   "name": "progress-bar",
   "description": "Indeterminate progress bar",
   "main": "progress-bar.html",
+  "keywords": ["polymer", "loading", "progress", "bar"],
   "dependencies": {
     "polymer": "Polymer/polymer#^1.4.0"
   },
