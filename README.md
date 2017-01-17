@@ -2,9 +2,7 @@
 
 # \<progress-bar\>
 
-Polymer indeterminate progress bar built with no other dependencies.
-
-Just 835 bytes gziped.
+Vanilla indeterminate progress bar built with no other dependencies that is smaller than 1KB.
 
 <!--
 ```

@@ -1,5 +1,3 @@
-<link rel="import" href="../polymer/polymer.html">
-
 <!--
 `progress-bar` is an indeterminate progress bar with no dependencies.
 
@@ -12,83 +10,85 @@ Custom property                                  | Description                  
 `--progress-bar-delay`                           | Delay before the animation begins           | `0s`
 
 -->
-<dom-module id="progress-bar">
-  <template>
-    <style>
-      :host {
-        display: block;
-        width: 100%;
-        height: 2px;
-        position: relative;
-        overflow: hidden;
-      }
+<template>
+  <style>
+    :host {
+      display: block;
+      width: 100%;
+      height: 2px;
+      position: relative;
+      overflow: hidden;
+    }
 
-      :host([hidden]) {
-        display: none !important;
-      }
+    :host([hidden]) {
+      display: none !important;
+    }
 
-      #primaryProgress {
-        background: var(--progress-bar-color, #37A0CE);
-        position:  absolute;
-        top: 0;
-        right: 0;
-        bottom: 0;
-        left: 0;
-        transform: scaleX(0);
-        will-change: transform;
-        transform-origin: right center;
-        animation: indeterminate-bar var(--progress-bar-duration, 2s) var(--progress-bar-delay, 0s) linear infinite;
-      }
+    #primaryProgress {
+      background: var(--progress-bar-color, #37A0CE);
+      position:  absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      transform: scaleX(0);
+      will-change: transform;
+      transform-origin: right center;
+      animation: indeterminate-bar var(--progress-bar-duration, 2s) var(--progress-bar-delay, 0s) linear infinite;
+    }
 
-      #primaryProgress::after {
-        content: "";
-        transform-origin: center center;
-        animation: indeterminate-splitter var(--progress-bar-duration, 2s) var(--progress-bar-delay, 0s) linear infinite;
-      }
+    #primaryProgress::after {
+      content: "";
+      transform-origin: center center;
+      animation: indeterminate-splitter var(--progress-bar-duration, 2s) var(--progress-bar-delay, 0s) linear infinite;
+    }
 
-      @keyframes indeterminate-bar {
-        0% {
-          transform: scaleX(1) translateX(-100%);
-        }
-        50% {
-          transform: scaleX(1) translateX(0%);
-        }
-        75% {
-          transform: scaleX(1) translateX(0%);
-          animation-timing-function: cubic-bezier(.28,.62,.37,.91);
-        }
-        100% {
-          transform: scaleX(0) translateX(0%);
-        }
+    @keyframes indeterminate-bar {
+      0% {
+        transform: scaleX(1) translateX(-100%);
       }
-
-      @keyframes indeterminate-splitter {
-        0% {
-          transform: scaleX(.75) translateX(-125%);
-        }
-        30% {
-          transform: scaleX(.75) translateX(-125%);
-          animation-timing-function: cubic-bezier(.42,0,.6,.8);
-        }
-        90% {
-          transform: scaleX(.75) translateX(125%);
-        }
-        100% {
-          transform: scaleX(.75) translateX(125%);
-        }
+      50% {
+        transform: scaleX(1) translateX(0%);
       }
-    </style>
+      75% {
+        transform: scaleX(1) translateX(0%);
+        animation-timing-function: cubic-bezier(.28,.62,.37,.91);
+      }
+      100% {
+        transform: scaleX(0) translateX(0%);
+      }
+    }
 
-    <div id="primaryProgress"></div>
-  </template>
-</dom-module>
+    @keyframes indeterminate-splitter {
+      0% {
+        transform: scaleX(.75) translateX(-125%);
+      }
+      30% {
+        transform: scaleX(.75) translateX(-125%);
+        animation-timing-function: cubic-bezier(.42,0,.6,.8);
+      }
+      90% {
+        transform: scaleX(.75) translateX(125%);
+      }
+      100% {
+        transform: scaleX(.75) translateX(125%);
+      }
+    }
+  </style>
+
+  <div id="primaryProgress"></div>
+</template>
 
 <script>
-  Polymer({
-    is: 'progress-bar',
+  (function() {
+    var template = document.currentScript.ownerDocument.querySelector('template');
+    var prototype = Object.create(HTMLElement.prototype);
 
-    hostAttributes: {
-      role: 'progressbar'
-    },
-  });
+    prototype.createdCallback = function() {
+      this.setAttribute('role', 'progressbar');
+      this.createShadowRoot().appendChild(document.importNode(template.content, true));
+    }
+
+    document.registerElement('progress-bar', {prototype: prototype});
+  })();
 </script>
