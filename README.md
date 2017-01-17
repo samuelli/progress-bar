@@ -2,7 +2,7 @@
 
 # \<progress-bar\>
 
-Vanilla indeterminate progress bar built with no other dependencies that is smaller than 1KB.
+`progress-bar` is a vanilla indeterminate progress bar with no dependencies that is smaller than 1KB.
 
 <!--
 ```
@@ -22,7 +22,7 @@ Vanilla indeterminate progress bar built with no other dependencies that is smal
       }
 
       progress-bar.fast {
-        --progress-bar-duration: 500ms;
+        --progress-bar-duration: 1s;
         --progress-bar-delay: 500ms;
         --progress-bar-color: #009688;
         height: 4px;
@@ -38,3 +38,13 @@ Vanilla indeterminate progress bar built with no other dependencies that is smal
 <progress-bar class="salmon"></progress-bar>
 <progress-bar class="fast"></progress-bar>
 ```
+
+# API reference
+
+Disable the progress element using the `hidden` attribute.
+
+Custom property                                  | Description                                 | Default
+-------------------------------------------------|---------------------------------------------|--------------
+`--progress-bar-color      `                     | Color of the progress bar                   | `#37A0CE`
+`--progress-bar-duration`                        | Duration of the animation                   | `0.2s`
+`--progress-bar-delay`                           | Delay before the animation begins           | `0s`

@@ -1,15 +1,3 @@
-<!--
-`progress-bar` is an indeterminate progress bar with no dependencies.
-
-Disable the progress element using the `hidden` attribute.
-
-Custom property                                  | Description                                 | Default
--------------------------------------------------|---------------------------------------------|--------------
-`--progress-bar-color      `                     | Color of the progress bar                   | `#37A0CE`
-`--progress-bar-duration`                        | Duration of the animation                   | `0.2s`
-`--progress-bar-delay`                           | Delay before the animation begins           | `0s`
-
--->
 <template>
   <style>
     :host {
@@ -32,7 +20,6 @@ Custom property                                  | Description                  
       bottom: 0;
       left: 0;
       transform: scaleX(0);
-      will-change: transform;
       transform-origin: right center;
       animation: indeterminate-bar var(--progress-bar-duration, 2s) var(--progress-bar-delay, 0s) linear infinite;
     }
