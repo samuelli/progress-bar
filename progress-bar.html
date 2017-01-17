@@ -1,4 +1,4 @@
-<template>
+<template id="progress-bar">
   <style>
     :host {
       display: block;
@@ -68,7 +68,7 @@
 
 <script>
   (function() {
-    var template = document.currentScript.ownerDocument.querySelector('template');
+    var template = document.currentScript.ownerDocument.querySelector('template#progress-bar');
     var prototype = Object.create(HTMLElement.prototype);
 
     prototype.createdCallback = function() {
