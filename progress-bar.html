@@ -1,94 +1,81 @@
-<link rel="import" href="../polymer/polymer.html">
+<template>
+  <style>
+    :host {
+      display: block;
+      width: 100%;
+      height: 2px;
+      position: relative;
+      overflow: hidden;
+    }
 
-<!--
-`progress-bar` is an indeterminate progress bar with no dependencies.
+    :host([hidden]) {
+      display: none !important;
+    }
 
-Disable the progress element using the `hidden` attribute.
+    #primaryProgress {
+      background: var(--progress-bar-color, #37A0CE);
+      position:  absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      transform: scaleX(0);
+      transform-origin: right center;
+      animation: indeterminate-bar var(--progress-bar-duration, 2s) var(--progress-bar-delay, 0s) linear infinite;
+    }
 
-Custom property                                  | Description                                 | Default
--------------------------------------------------|---------------------------------------------|--------------
-`--progress-bar-color      `                     | Color of the progress bar                   | `#37A0CE`
-`--progress-bar-duration`                        | Duration of the animation                   | `0.2s`
-`--progress-bar-delay`                           | Delay before the animation begins           | `0s`
+    #primaryProgress::after {
+      content: "";
+      transform-origin: center center;
+      animation: indeterminate-splitter var(--progress-bar-duration, 2s) var(--progress-bar-delay, 0s) linear infinite;
+    }
 
--->
-<dom-module id="progress-bar">
-  <template>
-    <style>
-      :host {
-        display: block;
-        width: 100%;
-        height: 2px;
-        position: relative;
-        overflow: hidden;
+    @keyframes indeterminate-bar {
+      0% {
+        transform: scaleX(1) translateX(-100%);
       }
-
-      :host([hidden]) {
-        display: none !important;
+      50% {
+        transform: scaleX(1) translateX(0%);
       }
-
-      #primaryProgress {
-        background: var(--progress-bar-color, #37A0CE);
-        position:  absolute;
-        top: 0;
-        right: 0;
-        bottom: 0;
-        left: 0;
-        transform: scaleX(0);
-        will-change: transform;
-        transform-origin: right center;
-        animation: indeterminate-bar var(--progress-bar-duration, 2s) var(--progress-bar-delay, 0s) linear infinite;
+      75% {
+        transform: scaleX(1) translateX(0%);
+        animation-timing-function: cubic-bezier(.28,.62,.37,.91);
       }
-
-      #primaryProgress::after {
-        content: "";
-        transform-origin: center center;
-        animation: indeterminate-splitter var(--progress-bar-duration, 2s) var(--progress-bar-delay, 0s) linear infinite;
+      100% {
+        transform: scaleX(0) translateX(0%);
       }
+    }
 
-      @keyframes indeterminate-bar {
-        0% {
-          transform: scaleX(1) translateX(-100%);
-        }
-        50% {
-          transform: scaleX(1) translateX(0%);
-        }
-        75% {
-          transform: scaleX(1) translateX(0%);
-          animation-timing-function: cubic-bezier(.28,.62,.37,.91);
-        }
-        100% {
-          transform: scaleX(0) translateX(0%);
-        }
+    @keyframes indeterminate-splitter {
+      0% {
+        transform: scaleX(.75) translateX(-125%);
       }
-
-      @keyframes indeterminate-splitter {
-        0% {
-          transform: scaleX(.75) translateX(-125%);
-        }
-        30% {
-          transform: scaleX(.75) translateX(-125%);
-          animation-timing-function: cubic-bezier(.42,0,.6,.8);
-        }
-        90% {
-          transform: scaleX(.75) translateX(125%);
-        }
-        100% {
-          transform: scaleX(.75) translateX(125%);
-        }
+      30% {
+        transform: scaleX(.75) translateX(-125%);
+        animation-timing-function: cubic-bezier(.42,0,.6,.8);
       }
-    </style>
+      90% {
+        transform: scaleX(.75) translateX(125%);
+      }
+      100% {
+        transform: scaleX(.75) translateX(125%);
+      }
+    }
+  </style>
 
-    <div id="primaryProgress"></div>
-  </template>
-</dom-module>
+  <div id="primaryProgress"></div>
+</template>
 
 <script>
-  Polymer({
-    is: 'progress-bar',
+  (function() {
+    var template = document.currentScript.ownerDocument.querySelector('template');
+    var prototype = Object.create(HTMLElement.prototype);
 
-    hostAttributes: {
-      role: 'progressbar'
-    },
-  });
+    prototype.createdCallback = function() {
+      this.setAttribute('role', 'progressbar');
+      this.createShadowRoot().appendChild(document.importNode(template.content, true));
+    }
+
+    document.registerElement('progress-bar', {prototype: prototype});
+  })();
 </script>

@@ -1,11 +1,8 @@
 {
   "name": "progress-bar",
-  "description": "Indeterminate progress bar",
+  "description": "Vanilla indeterminate progress bar",
   "main": "progress-bar.html",
-  "keywords": ["polymer", "loading", "progress", "bar"],
-  "dependencies": {
-    "polymer": "Polymer/polymer#^1.4.0"
-  },
+  "keywords": ["loading", "progress", "bar"],
   "devDependencies": {
     "webcomponentsjs": "webcomponents/webcomponentsjs#^0.7.0"
   }
