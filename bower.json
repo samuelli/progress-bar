@@ -5,5 +5,8 @@
   "keywords": ["loading", "progress", "bar"],
   "devDependencies": {
     "webcomponentsjs": "webcomponents/webcomponentsjs#^0.7.0"
+  },
+  "demos": {
+    "Simple demo": "demo.html"
   }
 }
