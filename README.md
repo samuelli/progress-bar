@@ -2,7 +2,7 @@
 
 # \<progress-bar\>
 
-`progress-bar` is a vanilla indeterminate progress bar with no dependencies that is smaller than 1KB.
+`progress-bar` is a vanilla indeterminate progress bar with no dependencies that is smaller than 2KB.
 
 <!--
 ```
@@ -50,5 +50,5 @@ Disable the progress element using the `hidden` attribute.
 Custom property                                  | Description                                 | Default
 -------------------------------------------------|---------------------------------------------|--------------
 `--progress-bar-color      `                     | Color of the progress bar                   | `#37A0CE`
-`--progress-bar-duration`                        | Duration of the animation                   | `1s`
+`--progress-bar-duration`                        | Duration of the animation                   | `2s`
 `--progress-bar-delay`                           | Delay before the animation begins           | `0s`

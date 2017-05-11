@@ -21,7 +21,7 @@
       left: 0;
       transform: scaleX(0);
       transform-origin: right center;
-      animation: indeterminate-bar var(--progress-bar-duration, 1s) var(--progress-bar-delay, 0s) linear infinite;
+      animation: indeterminate-bar var(--progress-bar-duration, 2s) var(--progress-bar-delay, 0s) linear infinite;
     }
 
     #primaryProgress.finished {
@@ -31,7 +31,7 @@
     #primaryProgress::after {
       content: "";
       transform-origin: center center;
-      animation: indeterminate-splitter var(--progress-bar-duration, 1s) var(--progress-bar-delay, 0s) linear infinite;
+      animation: indeterminate-splitter var(--progress-bar-duration, 2s) var(--progress-bar-delay, 0s) linear infinite;
     }
 
     #primaryProgress.finished::after {
@@ -88,7 +88,12 @@
     }
 
     static get observedAttributes() {
-      return ['disabled'];
+      return [
+        /**
+         * @property disabled {boolean} Set to `true` to disable the progress bar
+         */
+        'disabled'
+      ];
     }
 
     get disabled() {
