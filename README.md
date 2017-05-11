@@ -39,12 +39,16 @@
 <progress-bar class="fast"></progress-bar>
 ```
 
-# API reference
+## Finish gracefully
+Use the `disable` attribute to let the progress bar finish gracefully instead of abruptly.
+
+
+## API reference
 
 Disable the progress element using the `hidden` attribute.
 
 Custom property                                  | Description                                 | Default
 -------------------------------------------------|---------------------------------------------|--------------
 `--progress-bar-color      `                     | Color of the progress bar                   | `#37A0CE`
-`--progress-bar-duration`                        | Duration of the animation                   | `0.2s`
+`--progress-bar-duration`                        | Duration of the animation                   | `1s`
 `--progress-bar-delay`                           | Delay before the animation begins           | `0s`

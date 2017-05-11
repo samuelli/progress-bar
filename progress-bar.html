@@ -21,13 +21,21 @@
       left: 0;
       transform: scaleX(0);
       transform-origin: right center;
-      animation: indeterminate-bar var(--progress-bar-duration, 2s) var(--progress-bar-delay, 0s) linear infinite;
+      animation: indeterminate-bar var(--progress-bar-duration, 1s) var(--progress-bar-delay, 0s) linear infinite;
+    }
+
+    #primaryProgress.finished {
+      animation: none;
     }
 
     #primaryProgress::after {
       content: "";
       transform-origin: center center;
-      animation: indeterminate-splitter var(--progress-bar-duration, 2s) var(--progress-bar-delay, 0s) linear infinite;
+      animation: indeterminate-splitter var(--progress-bar-duration, 1s) var(--progress-bar-delay, 0s) linear infinite;
+    }
+
+    #primaryProgress.finished::after {
+      animation: none;
     }
 
     @keyframes indeterminate-bar {
@@ -67,15 +75,46 @@
 </template>
 
 <script>
-  (function() {
-    var template = document.currentScript.ownerDocument.querySelector('template#progress-bar');
-    var prototype = Object.create(HTMLElement.prototype);
-
-    prototype.createdCallback = function() {
-      this.setAttribute('role', 'progressbar');
-      this.createShadowRoot().appendChild(document.importNode(template.content, true));
+  class ProgressBar extends HTMLElement {
+    static get is() {
+      return 'progress-bar';
     }
 
-    document.registerElement('progress-bar', {prototype: prototype});
-  })();
+    constructor() {
+      super();
+      const shadowRoot = this.attachShadow({mode: 'open'});
+      const template = document.currentScript.ownerDocument.querySelector('template#progress-bar');
+      shadowRoot.appendChild(template.content.cloneNode(true));
+    }
+
+    static get observedAttributes() {
+      return ['disabled'];
+    }
+
+    get disabled() {
+      return this.hasAttribute('disabled');
+    }
+
+    set disabled(value) {
+      if (value) {
+        this.setAttribute('disabled', '');
+      } else {
+        this.removeAttribute('disabled');
+      }
+    }
+
+    _iterationCallback() {
+      this.shadowRoot.querySelector('#primaryProgress').classList.add('finished');
+    }
+
+    attributeChangedCallback() {
+      const progress = this.shadowRoot.querySelector('#primaryProgress');
+      if (this.disabled)
+        progress.addEventListener('animationiteration', this._iterationCallback.bind(this), {once: true, passive: true});
+      else
+        progress.classList.remove('finished');
+    }
+  }
+
+  customElements.define('progress-bar', ProgressBar);
 </script>

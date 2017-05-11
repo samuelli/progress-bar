@@ -4,7 +4,7 @@
   "main": "progress-bar.html",
   "keywords": ["loading", "progress", "bar"],
   "devDependencies": {
-    "webcomponentsjs": "webcomponents/webcomponentsjs#^0.7.0"
+    "webcomponentsjs": "webcomponents/webcomponentsjs#^v1.0.0-rc.11"
   },
   "demos": {
     "Simple demo": "demo.html"
