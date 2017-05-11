@@ -75,6 +75,10 @@
 </template>
 
 <script>
+  /**
+    * @customElement
+    * @property disabled {boolean} Set to `true` to disable the progress bar
+    */
   class ProgressBar extends HTMLElement {
     static get is() {
       return 'progress-bar';
@@ -88,10 +92,7 @@
     }
 
     static get observedAttributes() {
-      return [
-        // @property disabled {boolean} Set to `true` to disable the progress bar
-        'disabled'
-      ];
+      return ['disabled'];
     }
 
     get disabled() {
