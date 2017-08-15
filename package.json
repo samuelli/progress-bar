@@ -1,6 +1,6 @@
 {
   "name": "progress-bar-element",
-  "version": "1.0.0",
+  "version": "2.0.1",
   "description": "Lightweight vanilla JS horizontal loading bar",
   "main": "progress-bar.html",
   "repository": {
