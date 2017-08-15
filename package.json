@@ -1,0 +1,23 @@
+{
+  "name": "progress-bar-element",
+  "version": "1.0.0",
+  "description": "Lightweight vanilla JS horizontal loading bar",
+  "main": "progress-bar.html",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/samuelli/progress-bar.git"
+  },
+  "keywords": [
+    "web",
+    "component",
+    "progress",
+    "bar",
+    "loading"
+  ],
+  "author": "Sam Li",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/samuelli/progress-bar/issues"
+  },
+  "homepage": "https://github.com/samuelli/progress-bar#readme"
+}
